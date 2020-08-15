@@ -43,6 +43,6 @@ PS > wsl --set-default workspace
 - Ubuntu 18.04で作っています。お好きなデスクトップ環境を入れられます。
 - fcitx-mozcを導入済みです。`$ fcitx-config-gtk3` にてキー設定を変更できます。
 - x11-appsを導入済みです。 `$ xeyes` にてWindowsとの接続を確認できます。
-- [systemd-genie](https://github.com/arkane-systems/genie) を導入済みです。`genie -s`で`systemd`が利用できるシェルになります。
-- [snapd](https://github.com/snapcore/snapd) を導入済みです。上記`systemd`が利用できる環境にて[Snap Store](https://snapcraft.io/store) に掲載されているGUIアプリをインストールできます。
+- [systemd-genie](https://github.com/arkane-systems/genie) を導入済みです。`systemd`が利用できるシェルになります。
+- [snapd](https://github.com/snapcore/snapd) を導入済みです。[Snap Store](https://snapcraft.io/store) に掲載されているGUIアプリをインストールできます。
   - Sublime Textの例 `snap install sublime-text --classic`

@@ -18,6 +18,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     git \
     xclip \
     x11-apps \
+    dbus-x11 \
     ubuntu-defaults-ja \
     fcitx \
     fcitx-mozc
