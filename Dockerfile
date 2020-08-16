@@ -1,7 +1,20 @@
 FROM ubuntu:18.04
 
-ENV DEBIAN_FRONTEND=noninteractive \
-    TZ=Asia/Tokyo
+ENV DEBIAN_FRONTEND=noninteractive
+
+ARG USERNAME=user
+ARG PASSWORD=user
+ARG ROOT_PASSWORD=root
+
+RUN echo "root:${ROOT_PASSWORD}" |  chpasswd  && \
+    useradd -m --groups sudo --shell /bin/bash ${USERNAME} && \
+    echo "${USERNAME}:${PASSWORD}" | chpasswd
+
+ADD default.sh ./
+RUN cat default.sh >> /home/${USERNAME}/.bashrc && \
+    touch /etc/wsl.conf && \
+    echo "[user]" >> /etc/wsl.conf && \
+    echo "default=${USERNAME}" >> /etc/wsl.conf
 
 RUN apt-get update && apt-get install -y \
     wget \
@@ -14,6 +27,7 @@ RUN wget -q https://www.ubuntulinux.jp/ubuntu-ja-archive-keyring.gpg -O- | apt-k
     wget https://www.ubuntulinux.jp/sources.list.d/focal.list -O /etc/apt/sources.list.d/ubuntu-ja.list
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+    sudo \
     vim \
     git \
     xclip \
@@ -24,9 +38,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     fcitx-mozc
 
 RUN update-locale LANG=ja_JP.UTF8
-
-ADD default.sh ./
-RUN cat default.sh >> ~/.bashrc
 
 # https://github.com/arkane-systems/genie
 
