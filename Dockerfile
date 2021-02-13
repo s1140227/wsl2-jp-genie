@@ -55,7 +55,12 @@ RUN wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-p
         dotnet-sdk-3.1 \
         dotnet-runtime-3.1
 
-RUN curl -s https://packagecloud.io/install/repositories/arkane-systems/wsl-translinux/script.deb.sh | bash && \
+# https://arkane-systems.github.io/wsl-transdebian/
+RUN wget -O /etc/apt/trusted.gpg.d/wsl-transdebian.gpg https://arkane-systems.github.io/wsl-transdebian/apt/wsl-transdebian.gpg && \
+    chmod a+r /etc/apt/trusted.gpg.d/wsl-transdebian.gpg && \
+    echo "deb https://arkane-systems.github.io/wsl-transdebian/apt/ bullseye main" > /etc/apt/sources.list.d/wsl-transdebian.list && \
+    echo "deb-src https://arkane-systems.github.io/wsl-transdebian/apt/ bullseye main" >> /etc/apt/sources.list.d/wsl-transdebian.list && \
+    apt-get update && \
     apt-get install -y \
         systemd-genie \
         snapd
