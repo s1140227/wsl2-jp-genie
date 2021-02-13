@@ -38,7 +38,7 @@ PS > wsl --list --verbose
   workspace              Stopped         2
 ```
 
-Docker Desktopによるdockerプロセスはデフォルト設定されているWSLコンテナとのみ繋がっているようです。
+Docker Desktopの初期設定ではdockerプロセスはデフォルト設定されているWSLコンテナとのみ繋がっています。
 必要に応じてデフォルト設定を変更してください。
 
 ```
